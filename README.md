@@ -1,1 +1,1 @@
-# nestjs-lambda-demo
+# nest-lambda
