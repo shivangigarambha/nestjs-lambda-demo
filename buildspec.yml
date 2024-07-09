@@ -23,3 +23,7 @@ artifacts:
     - '**/*'
   discard-paths: yes
   base-directory: .serverless
+
+cache:
+  paths:
+    - /root/.npm
