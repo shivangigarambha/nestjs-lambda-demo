@@ -52,12 +52,12 @@ functions:
           bucket: ${self:custom.bucketName}
           event: s3:ObjectCreated:*
 
-resources:
-  Resources:
-    S3Bucket:
-      Type: AWS::S3::Bucket
-      Properties:
-        BucketName: ${self:custom.bucketName}
+# resources:
+#   Resources:
+#     S3Bucket:
+#       Type: AWS::S3::Bucket
+#       Properties:
+#         BucketName: ${self:custom.bucketName}
 
 package:
   exclude:
