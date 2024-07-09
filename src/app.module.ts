@@ -9,8 +9,6 @@ import { AuthModule } from './auth/auth.module';
 import { NewUsersModule } from './cron/newUsers.module';
 
 const config = configuration();
-console.log('dburl - ', config.DB_URL);
-console.log('dbname - ', config.DB_NAME);
 
 @Module({
   imports: [
@@ -18,7 +16,7 @@ console.log('dbname - ', config.DB_NAME);
       envFilePath: '.env',
       isGlobal: true
     }),
-    MongooseModule.forRoot(config.DB_URL, { dbName: config.DB_NAME }),
+    MongooseModule.forRoot(`${config.DB_URL}/${config.DB_NAME}`),
     AuthModule,
     NewUsersModule
   ],
