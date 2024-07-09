@@ -1,0 +1,25 @@
+version: 0.2
+
+phases:
+  install:
+    runtime-versions:
+      nodejs: 18
+    commands:
+      - echo Installing Serverless framework...
+      - npm install -g serverless
+  pre_build:
+    commands:
+      - echo Installing project dependencies...
+      - npm install
+  build:
+    commands:
+      - echo Building the project...
+      - npm run build
+      - echo Deploying the project...
+      - npm run deploy
+
+artifacts:
+  files:
+    - '**/*'
+  discard-paths: yes
+  base-directory: .serverless
