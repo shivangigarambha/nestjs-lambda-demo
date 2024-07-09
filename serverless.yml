@@ -1,4 +1,6 @@
 service: nestjs-lambda
+frameworkVersion: '3'
+useDotenv: true
 
 plugins:
   - serverless-plugin-typescript
@@ -8,16 +10,19 @@ plugins:
 provider:
   name: aws
   runtime: nodejs18.x
+  region: ap-south-1
   timeout: 300
   environment:
-    DB_URL: mongodb://127.0.0.1:27017
-    DB_NAME: nest-lambda
-    SMTP_HOST: smtp.gmail.com
-    SMTP_PORT: 587
-    SMTP_USER: example@gmail.com
-    SMTP_PASSWORD: password
-    SMTP_EMAIL_FROM: youremail@gmail.com
-    SMTP_EMAIL_TO: toemail@gmail.com
+    DB_URL: ${env:DB_URL}
+    DB_USER: ${env:DB_USER}
+    DB_PW: ${env:DB_PW}
+    DB_NAME: ${env:DB_NAME}
+    SMTP_HOST: ${env:SMTP_HOST}
+    SMTP_PORT: ${env:SMTP_PORT}
+    SMTP_USER: ${env:SMTP_USER}
+    SMTP_PASSWORD: ${env:SMTP_PASSWORD}
+    SMTP_EMAIL_FROM: ${env:SMTP_EMAIL_FROM}
+    SMTP_EMAIL_TO: ${env:SMTP_EMAIL_TO}
   iamRoleStatements:
     - Effect: Allow
       Action:
@@ -46,7 +51,6 @@ functions:
       - s3:
           bucket: ${self:custom.bucketName}
           event: s3:ObjectCreated:*
-          existing: true
 
 resources:
   Resources:

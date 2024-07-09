@@ -16,7 +16,12 @@ const config = configuration();
       envFilePath: '.env',
       isGlobal: true
     }),
-    MongooseModule.forRoot(`${config.DB_URL}/${config.DB_NAME}`),
+    MongooseModule.forRoot(
+      config.DB_URL
+        .replace('<username>', config.DB_USER)
+        .replace('<password>', config.DB_PW)
+        .replace('<dbname>', config.DB_NAME)
+    ),
     AuthModule,
     NewUsersModule
   ],
