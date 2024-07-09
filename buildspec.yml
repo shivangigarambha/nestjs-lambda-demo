@@ -6,15 +6,16 @@ phases:
       nodejs: 18
     commands:
       - echo Installing Serverless framework...
-      - npm install -g serverless
-  pre_build:
-    commands:
-      - echo Installing project dependencies...
-      - node -v
-      - npm -v
-      - npm ci
+      - npm install -g serverless@3.39.0
+      - npm i -g @nestjs/cli
+  # pre_build:
+  #   commands:
+  #     - echo Installing project dependencies...
+  #     - npm ci
   build:
     commands:
+      - echo Installing project dependencies...
+      - npm install --omit=dev
       - echo Building the project...
       - npm run build
       - echo Deploying the project...
