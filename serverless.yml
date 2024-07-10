@@ -34,13 +34,6 @@ provider:
 custom:
   bucketName: ${self:service}-test-bucket
 
-resources:
-  Resources:
-    S3Bucket:
-      Type: AWS::S3::Bucket
-      Properties:
-        BucketName: ${self:custom.bucketName}
-
 functions:
   main:
     handler: src/lambda.handler
@@ -58,6 +51,14 @@ functions:
       - s3:
           bucket: ${self:custom.bucketName}
           event: s3:ObjectCreated:*
+          existing: true
+
+resources:
+  Resources:
+    S3Bucket:
+      Type: AWS::S3::Bucket
+      Properties:
+        BucketName: ${self:custom.bucketName}
 
 package:
   exclude:
